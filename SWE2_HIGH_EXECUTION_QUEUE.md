@@ -5,7 +5,7 @@ PROJECT: PARK-IT
 
 RULE: Audit the legacy application before modernization; preserve useful working behavior while replacing brittle/deprecated boundaries incrementally.
 
-TARGET PRODUCT: automotive space marketplace + booking + payments + smart physical access.
+TARGET PRODUCT: automotive space marketplace + municipal/public parking + UVAR/ZTL/LEZ policy + booking + payments + smart physical access.
 
 ## ACTIVE
 
@@ -40,7 +40,29 @@ TARGET PRODUCT: automotive space marketplace + booking + payments + smart physic
    - Deterministic explainable ranking.
    - Truthful stale/unknown availability.
 
-4. **PARK-SWE2-004 — Host Marketplace**
+4. **PARK-SWE2-004 — Municipal/Public Parking + UVAR**
+   - Municipal authority/tenant model.
+   - Zone/curb/entry geometry.
+   - RegulationVersion + effective dates.
+   - Tariffs.
+   - Resident/visitor/business permits and credits.
+   - Public parking sessions.
+   - Vehicle eligibility incl. Euro class/propulsion/weight/dimensions.
+   - ZTL/LEZ/ZEZ/congestion/access-fee rules.
+   - DATEX II/APDS boundaries.
+   - GIS import + draft Zone Builder.
+   - Human approve/version/publish.
+   - Route compliance and explainable decisions.
+
+5. **PARK-SWE2-005 — Municipal Enforcement + Occupancy**
+   - Handheld/scan-car/fixed-ANPR contracts.
+   - Sensor occupancy contracts.
+   - Session/permit/exemption verification.
+   - Compliance evaluation.
+   - Suspected-violation evidence/backoffice.
+   - No uncertain automatic legal penalty.
+
+6. **PARK-SWE2-006 — Host Marketplace**
    - Host onboarding.
    - Space publish/edit.
    - Schedules/pricing.
@@ -50,7 +72,7 @@ TARGET PRODUCT: automotive space marketplace + booking + payments + smart physic
    - Photos.
    - Approval modes.
 
-5. **PARK-SWE2-005 — Booking + Settlement**
+7. **PARK-SWE2-007 — Booking + Settlement**
    - Quote/reserve/confirm/check-in/check-out.
    - Cancellation/expiry.
    - PaymentGateway.
@@ -58,7 +80,7 @@ TARGET PRODUCT: automotive space marketplace + booking + payments + smart physic
    - Sandbox reconciliation.
    - Webhook replay/idempotency.
 
-6. **PARK-SWE2-006 — Smart Access Engine**
+8. **PARK-SWE2-008 — Smart Access Engine**
    - Access entitlement model.
    - QR and temporary PIN reference adapters.
    - Remote unlock adapter.
@@ -66,14 +88,14 @@ TARGET PRODUCT: automotive space marketplace + booking + payments + smart physic
    - Gate/smart-lock interface.
    - Revocation/expiry/replay tests.
 
-7. **PARK-SWE2-007 — ANPR + Vehicle Access**
+9. **PARK-SWE2-009 — ANPR + Vehicle Access**
    - Plate binding.
    - Temporary allowlist grants.
    - Provider-neutral ANPR adapter.
    - Wrong-plate/wrong-gate/stale/replay tests.
    - Privacy retention.
 
-8. **PARK-SWE2-008 — PARK-IT Access Box Foundation**
+10. **PARK-SWE2-010 — PARK-IT Access Box Foundation**
    - Threat model.
    - Device simulator.
    - Secure outbound transport.
@@ -82,26 +104,26 @@ TARGET PRODUCT: automotive space marketplace + booking + payments + smart physic
    - Offline expiring entitlement cache.
    - No physical deployment without owner gate.
 
-9. **PARK-SWE2-009 — EV / OCPP**
+11. **PARK-SWE2-011 — EV / OCPP**
    - Charger model.
    - OCPP adapter.
    - Booking/charger reservation.
    - Session/energy/tariff records.
    - Simulator/sandbox evidence.
 
-10. **PARK-SWE2-010 — Evidence + Trust + Disputes**
+12. **PARK-SWE2-012 — Evidence + Trust + Disputes**
     - Accepted rules/version.
     - Check-in/out evidence.
     - Incident/dispute timeline.
     - Retention policy.
     - Role-based evidence access.
 
-11. **PARK-SWE2-011 — Mobile/PWA Golden Path**
+13. **PARK-SWE2-013 — Mobile/PWA Golden Path**
     - Customer-grade search/listing/booking/payment/access flow.
     - Visible E2E.
     - Responsive mobile browser evidence.
 
-12. **PARK-SWE2-012 — Production/Staging Seal**
+14. **PARK-SWE2-014 — Production/Staging Seal**
     - Environment config.
     - API-key hygiene.
     - Observability.
@@ -117,6 +139,9 @@ TARGET PRODUCT: automotive space marketplace + booking + payments + smart physic
 - Real payment production activation.
 - Real map/geocoding/provider keys where paid/contractual.
 - Authoritative external parking feeds.
+- Municipality-specific legal/VZN/regulation sources and production authority onboarding.
+- Production enforcement/penalty integration.
+- National vehicle/emission registries or verification sources where access is restricted/contractual.
 - Real access-control hardware installation.
 - Physical relay/gate activation.
 - Real ANPR camera deployment.
