@@ -6,7 +6,7 @@ const mongoClient = require('mongodb').MongoClient;
 const fs = require('fs');
 
 const google_url = 'https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=';
-const google_api_key = "AIzaSyAcU_WRH26ojanxF29jOApo0EKuSe4JMN0";
+const google_api_key = process.env.GOOGLE_MAPS_API_KEY;
 
 // db Object
 let dbo;
