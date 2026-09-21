@@ -43,6 +43,12 @@ Minimum entities:
 - BookingParticipant
 - Payment
 - Payout
+- RoadChargeProduct
+- RoadChargeCoverage
+- TrustCredential
+- SignedDocument
+- DeliveryReceipt
+- ExtractedDocumentField
 - Refund
 - Deposit/Hold
 - AccessPolicy
@@ -348,7 +354,7 @@ Support:
 
 The authoritative parking session must be verifiable by enforcement adapters.
 
-## 7C. Entitlement / benefit engine
+## 7D. Entitlement / benefit engine
 
 Municipal special treatment must use a reusable entitlement engine.
 
@@ -393,7 +399,7 @@ Accessible-space eligibility and pricing are separate decisions.
 Examples such as BEV/PHEV discounts, ŤZP benefits or supply permits are municipality-configured policy; the core must not presume a universal legal entitlement.
 
 
-## 7D. Heavy vehicle / freight model
+## 7E. Heavy vehicle / freight model
 
 Do not represent a truck only by plate/category.
 
@@ -427,7 +433,7 @@ Freight ranking signals:
 - price
 
 
-## 7E. Special Asset / oversize compatibility
+## 7F. Special Asset / oversize compatibility
 
 Generalise the object being stored from Vehicle to Asset while keeping Vehicle as a specialised first-class profile.
 
@@ -476,7 +482,7 @@ Compatibility may use wingspan, length, tail/rotor clearance, weight class, towi
 
 Machinery storage can include hardstanding/ground-bearing capability, low-loader access, gate envelope, spill containment, security, charging/power and maintenance capabilities.
 
-## 7F. Dynamic curb / temporary rules
+## 7G. Dynamic curb / temporary rules
 
 CurbSegmentPolicy is effective-dated and can change use by schedule or event:
 - loading
@@ -493,14 +499,14 @@ TemporaryRule must have source, authority, start/end, precedence and automatic e
 
 Evaluate Open Mobility Foundation CDS as an interoperability boundary.
 
-## 7G. Roaming and fleet integration
+## 7H. Roaming and fleet integration
 
 Roaming adapters map PARK-IT sessions/payments to external city/operator systems without assuming cross-authority permit equivalence.
 
 FleetAccount/API supports bulk vehicles/assets, time windows, permit references, access decisions, loading/curb rules, compatible staging/parking and reservations.
 
 
-## 7H. Permit orchestration
+## 7I. Permit orchestration
 
 PermitCase is the generic workflow for movements/use cases that require external authority approval.
 
@@ -537,7 +543,7 @@ No lower-trust route can be silently promoted to an authority-approved route.
 
 AuthorityRulePack must be effective-dated, sourced and versioned.
 
-## 7I. Payment orchestration
+## 7J. Payment orchestration
 
 Create a provider-neutral Payment Orchestrator over one or more licensed PSPs.
 
@@ -572,7 +578,18 @@ Marketplace seller/operator onboarding and payouts should use PSP platform/marke
 Do not implement a stored-value wallet/escrow product without specific legal/payment-regulatory review.
 
 
-## 7J. Enforcement
+## 7K. Trust, document and road-charge orchestration
+
+TrustServiceAdapter handles identity/signature/seal/timestamp/delivery provider differences.
+
+Document extraction must preserve field-level provenance and verification state.
+
+RoadChargeProvider can quote/verify/purchase required toll/vignette/access-charge products while recognising existing fleet/EETS coverage.
+
+These are separate from parking/booking payment because the legal issuer/operator may be a third party.
+
+
+## 7L. Enforcement
 
 Normalize enforcement observations from:
 - handheld app
@@ -594,7 +611,7 @@ Observation
 
 PARK-IT stores the evidence/audit trail and produces a violation candidate. Jurisdiction-specific legal penalty issuance remains outside the generic core unless explicitly integrated and authorised.
 
-## 7K. Standards
+## 7M. Standards
 
 Public interoperability boundaries should evaluate:
 - DATEX II Parking
