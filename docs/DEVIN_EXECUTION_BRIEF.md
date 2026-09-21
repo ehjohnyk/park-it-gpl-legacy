@@ -6,26 +6,28 @@ Transform the legacy PARK-IT parking prototype into a production-shaped complete
 
 Do not treat this brief as a one-slice coding request.
 
-Follow:
+Follow in this precedence order:
 1. `AGENTS.md`
-2. `MASTER_AUTONOMOUS_COMPLETION_PROTOCOL.md`
-3. `SWE2_HIGH_ACCELERATION_PROTOCOL.md`
-4. `SWE2_HIGH_EXECUTION_QUEUE.md`
-5. `docs/PARK_IT_PRODUCT_ARCHITECTURE.md`
-6. `docs/OPEN_SOURCE_REUSE_AUDIT.md`
-7. `docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md`
-8. `docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md`
-9. `docs/MOBILITY_SPACE_PLATFORM_SCOPE.md`
-10. `docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md`
+2. `docs/PARK_IT_V2_ARCHITECTURE_FREEZE.md`
+3. `MASTER_AUTONOMOUS_COMPLETION_PROTOCOL.md`
+4. `SWE2_HIGH_ACCELERATION_PROTOCOL.md`
+5. `SWE2_HIGH_EXECUTION_QUEUE.md`
+6. `docs/PARK_IT_PRODUCT_ARCHITECTURE.md`
+7. `docs/OPEN_SOURCE_REUSE_AUDIT.md`
+8. `docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md`
+9. `docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md`
+10. `docs/MOBILITY_SPACE_PLATFORM_SCOPE.md`
+11. `docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md`
 
 ## Mandatory first action
 
-Perform a repository-wide audit and save an executable master plan in the repository before substantial implementation.
+Perform a repository-wide audit and save an executable master plan in the repository before substantial implementation. First enforce the architecture/licensing freeze in `docs/PARK_IT_V2_ARCHITECTURE_FREEZE.md`; do not implement around or underneath it.
 
 Audit:
 - current runtime/installability
 - dependency age/vulnerabilities
 - source ownership/license
+- GPLv3 derivative-work boundary and clean-room/commercial-path decision
 - secrets/API keys
 - legacy Mongo assumptions
 - Google API assumptions
