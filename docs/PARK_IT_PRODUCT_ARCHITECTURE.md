@@ -80,6 +80,13 @@ Minimum entities:
 - ViolationCandidate
 - SensorDevice
 - OccupancyObservation
+- VehicleEnvelope
+- VehicleCombination
+- HeavyVehicleRestriction
+- TruckParkingFacility
+- TruckParkingCapacity
+- FacilityService
+- SecurityClassification
 
 Use immutable identifiers and explicit state transitions.
 
@@ -361,7 +368,41 @@ Accessible-space eligibility and pricing are separate decisions.
 Examples such as BEV/PHEV discounts, ŤZP benefits or supply permits are municipality-configured policy; the core must not presume a universal legal entitlement.
 
 
-## 7D. Enforcement
+## 7D. Heavy vehicle / freight model
+
+Do not represent a truck only by plate/category.
+
+Create a VehicleEnvelope / VehicleCombination model covering:
+- category/use
+- rigid/articulated
+- dimensions
+- maximum permissible mass
+- actual mass only when verified/required
+- axle information
+- trailer
+- combination length
+- ADR
+- refrigerated/reefer characteristics
+
+Regulation predicates can operate on these attributes.
+
+TruckParkingFacility must expose capacity, compatibility and services so search can reject physically or legally invalid candidates before ranking.
+
+DATEX II Safe and Secure Truck Parking should be evaluated as an import/export boundary.
+
+Freight ranking signals:
+- legal route compatibility
+- vehicle-envelope compatibility
+- HGV slot availability/freshness
+- reservation availability
+- detour/ETA
+- security classification
+- driver facilities
+- ADR/reefer requirements
+- price
+
+
+## 7E. Enforcement
 
 Normalize enforcement observations from:
 - handheld app
@@ -383,7 +424,7 @@ Observation
 
 PARK-IT stores the evidence/audit trail and produces a violation candidate. Jurisdiction-specific legal penalty issuance remains outside the generic core unless explicitly integrated and authorised.
 
-## 7E. Standards
+## 7F. Standards
 
 Public interoperability boundaries should evaluate:
 - DATEX II Parking
