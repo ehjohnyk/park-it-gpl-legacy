@@ -15,6 +15,8 @@ Follow:
 6. `docs/OPEN_SOURCE_REUSE_AUDIT.md`
 7. `docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md`
 8. `docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md`
+9. `docs/MOBILITY_SPACE_PLATFORM_SCOPE.md`
+10. `docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md`
 
 ## Mandatory first action
 
@@ -166,14 +168,20 @@ Acceptance:
 - audit timeline
 
 ### P7 — Payments/payouts
-- PaymentGateway abstraction
+- PaymentGateway + MarketplaceGateway abstractions
+- cards + Apple Pay + Google Pay sandbox paths
+- PayPal/SEPA/local-method capability evaluation
 - provider sandbox integration
+- connected-host/operator onboarding + PSP KYC
 - connected-host onboarding
 - platform fee
 - host payout
 - refund/cancel flows
 - webhook replay/idempotency
 - ledger reconciliation
+- authority/permit fee separation
+- B2B invoice/fleet billing model
+- no fake escrow/stored-value wallet
 
 No real-money production activation without owner approval.
 
@@ -231,7 +239,32 @@ Physical hardware activation is an external/owner gate.
 - energy metering/price domain
 - sandbox/simulator evidence
 
-### P12 — Evidence/disputes/trust
+### P12 — Permit Orchestration
+- PermitCase state machine
+- effective-dated AuthorityRulePack
+- jurisdiction/authority resolution
+- required-document discovery
+- authority adapter interfaces
+- structured manual-submission fallback
+- multi-authority consultation graph
+- administrative fee records
+- machine-readable permit conditions
+- approved-route provenance
+- trip-day revalidation
+- service-provider attachments (escort/route survey/etc.)
+
+Acceptance:
+- cannot claim APPROVED without authoritative/operator evidence
+- navigation route cannot masquerade as approved route
+- missing critical authority/route data fails closed
+- RulePack version appears in every permit decision
+- simulated multi-authority approval dependency test
+- information-request/resubmission test
+- permit expiry/revocation tests
+- trip-day route-change test
+
+
+### P13 — Evidence/disputes/trust
 - accepted-rule version
 - check-in/out photos
 - incident/dispute
@@ -239,7 +272,7 @@ Physical hardware activation is an external/owner gate.
 - immutable hashes/metadata where appropriate
 - role-based evidence access
 
-### P13 — Mobile/PWA + Municipal Golden Paths
+### P14 — Mobile/PWA + Municipal Golden Paths
 
 Marketplace visible E2E:
 1. search destination/use case
@@ -252,6 +285,19 @@ Marketplace visible E2E:
 8. active booking
 9. checkout
 10. settlement/review
+
+Permit orchestration E2E:
+1. create abnormal transport fixture
+2. discover two simulated jurisdictions and three required authorities
+3. generate missing-document checklist
+4. submit via adapter simulator
+5. one authority approves, one requests information, one remains pending
+6. respond and reach APPROVED_WITH_CONDITIONS
+7. produce AUTHORITY_APPROVED_ROUTE with exact source/version
+8. pay simulated administrative fee
+9. trip-day temporary closure invalidates route
+10. revalidation returns RECONFIRMATION_REQUIRED rather than silently routing around permit conditions
+
 
 Special-asset E2E:
 1. create abnormal-load fixture and compatible staging yard
@@ -299,7 +345,7 @@ Municipal operator E2E:
 6. driver and enforcement decisions reference the exact published version
 7. rollback/version-history evidence works
 
-### P14 — Operations/release
+### P15 — Operations/release
 - observability
 - security headers
 - rate limits
@@ -339,6 +385,8 @@ Evaluate, do not blindly import:
 - citrineos/citrineos-core
 - parking-platform-org/parking-management-system
 - Stripe marketplace samples
+- Adyen for Platforms/payment-method docs
+- VEMAGS/RDW-DWO workflows as non-code permit benchmarks
 
 Record for each:
 - exact repo/ref
