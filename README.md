@@ -1,8 +1,8 @@
 # PARK-IT
 
-**PARK-IT is an automotive space marketplace and smart-access platform.**
+**PARK-IT is an automotive space marketplace, public parking/UVAR platform and smart-access system.**
 
-The original project started as a web parking assistant that finds nearby parking and navigates the driver to an available space. The target product is now broader: one platform for discovering, booking, paying for and accessing physical spaces around mobility.
+The original project started as a web parking assistant that finds nearby parking and navigates the driver to an available space. The target product is now broader: one platform for discovering, booking, paying for and accessing physical spaces around mobility **and** for cities/operators to define public parking zones, permits, tariffs and vehicle-access regulations.
 
 A PARK-IT listing can represent a normal parking space, a private driveway, a garage, long-term vehicle storage, an EV charging space, a detailing bay, a DIY workshop or a professional service bay.
 
@@ -24,6 +24,27 @@ Examples:
 - event parking
 - monthly parking
 - motorcycle / trailer / caravan parking
+
+### CITY / MUNICIPAL
+Operate public parking and urban vehicle access in the same driver platform.
+
+Examples:
+- paid parking zones
+- resident / visitor / business permits
+- digital parking cards and time credits
+- on-street/off-street municipal parking
+- P+R
+- tariff schedules and maximum stay
+- ZTL / limited traffic zones
+- low-emission / zero-emission zones
+- pedestrian/residential access zones
+- congestion/access fees
+- loading/delivery windows
+- vehicle restrictions by Euro emission class, fuel, category, dimensions or weight
+- temporary/event restrictions
+- ANPR enforcement, scan cars and fixed cameras
+- occupancy sensors and live availability
+- municipal backoffice, analytics and open-data feeds
 
 ### GARAGE
 Rent private automotive space for a period of time.
@@ -88,6 +109,71 @@ Weight 3,000 kg
 ```
 
 Capabilities must be machine-readable so search, ranking, policy, pricing and access automation can work consistently.
+
+## Public parking, zoning and UVAR
+
+PARK-IT must support authoritative municipal/public rules alongside marketplace listings.
+
+A public zone can define:
+- geometry: polygon, curb/road segment, entry point or individual spaces
+- tariff and charging schedule
+- maximum stay and grace rules
+- resident/visitor/business permits
+- time credits and exemptions
+- allowed/prohibited vehicle classes
+- Euro emission class / propulsion restrictions
+- vehicle weight/dimension restrictions
+- ZTL/LEZ/ZEZ/congestion rules
+- loading/delivery periods
+- temporary/event restrictions
+- enforcement method
+- occupancy/availability sources
+
+The policy engine should answer not only **"where can I park?"** but also **"may this specific vehicle legally enter and park there at this time, and what must it pay or obtain?"**
+
+Example:
+
+```text
+Destination: Historic Centre
+Vehicle: M1 diesel, Euro 4
+Time: Monday 09:15
+
+Entry: DENIED by ZTL-2027-04 v3
+Reason: Euro class below minimum
+Alternative: P+R North
+Parking: 2.00 EUR + public transport connection
+```
+
+### Assisted zone builder
+
+Cities should be able to import municipal GIS/open data and have PARK-IT generate a **draft** zoning model from road/curb geometry, existing parking inventory, signs, zone codes and other licensed map data.
+
+Sources can include:
+- GeoJSON / Shapefile / GPKG
+- WFS/WMS or municipal GIS
+- OpenStreetMap/open data
+- cadastral or road datasets where licensed
+- existing parking inventory
+- traffic-sign datasets
+- sensor/ANPR telemetry
+- commercial map APIs only within their terms
+
+AI may propose polygons, curb segments, tariff assignments and detect gaps/conflicts. A human municipal operator must approve/version/publish legally effective zones and restrictions.
+
+### Municipal enforcement
+
+PARK-IT can integrate:
+- handheld enforcement
+- scan car/mobile ANPR
+- fixed ANPR/virtual gates
+- sensors
+- active parking sessions
+- permits and exemptions
+
+Machine observations create a compliance result or **suspected violation evidence package** for the competent authority; legal enforcement remains jurisdiction-specific.
+
+See [docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md](docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md).
+
 
 ## Host marketplace
 
@@ -439,6 +525,7 @@ Prefer standards and permissively licensed components over proprietary lock-in.
 
 Strong candidates:
 - **APDS** for parking-data interoperability
+- **DATEX II Parking + UVAR** for European public parking/access-regulation interoperability
 - **OpenStreetMap** data
 - **MapLibre GL JS** for map rendering
 - **Valhalla or OSRM** for routing
@@ -473,6 +560,7 @@ The current execution program is defined in:
 - [SWE2_HIGH_ACCELERATION_PROTOCOL.md](SWE2_HIGH_ACCELERATION_PROTOCOL.md)
 - [SWE2_HIGH_EXECUTION_QUEUE.md](SWE2_HIGH_EXECUTION_QUEUE.md)
 - [docs/PARK_IT_PRODUCT_ARCHITECTURE.md](docs/PARK_IT_PRODUCT_ARCHITECTURE.md)
+- [docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md](docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md)
 - [docs/OPEN_SOURCE_REUSE_AUDIT.md](docs/OPEN_SOURCE_REUSE_AUDIT.md)
 - [docs/DEVIN_EXECUTION_BRIEF.md](docs/DEVIN_EXECUTION_BRIEF.md)
 
