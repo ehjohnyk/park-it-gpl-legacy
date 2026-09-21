@@ -81,15 +81,30 @@ TARGET PRODUCT: mobility-space marketplace + municipal/public parking + UVAR/ZTL
    - Photos.
    - Approval modes.
 
-7. **PARK-SWE2-007 — Booking + Settlement**
+7. **PARK-SWE2-007 — Permit Orchestration**
+   - PermitCase + AuthorityRulePack.
+   - Jurisdiction/authority resolution.
+   - Required applications/documents/consultations.
+   - Authority connector interfaces + manual package fallback.
+   - Administrative fee tracking/payment boundary.
+   - Approved-route provenance.
+   - Permit conditions.
+   - Trip-day revalidation.
+   - Fail closed on missing authoritative approval.
+
+8. **PARK-SWE2-008 — Booking + Settlement**
    - Quote/reserve/confirm/check-in/check-out.
    - Cancellation/expiry.
-   - PaymentGateway.
+   - PaymentGateway + MarketplaceGateway.
+   - cards, Apple Pay, Google Pay sandbox checkout.
+   - PayPal/SEPA/local method evaluation.
+   - marketplace KYC/split/payout.
+   - B2B/fleet billing.
    - Marketplace fee/payout/refund.
    - Sandbox reconciliation.
    - Webhook replay/idempotency.
 
-8. **PARK-SWE2-008 — Smart Access Engine**
+9. **PARK-SWE2-009 — Smart Access Engine**
    - Access entitlement model.
    - QR and temporary PIN reference adapters.
    - Remote unlock adapter.
@@ -97,14 +112,14 @@ TARGET PRODUCT: mobility-space marketplace + municipal/public parking + UVAR/ZTL
    - Gate/smart-lock interface.
    - Revocation/expiry/replay tests.
 
-9. **PARK-SWE2-009 — ANPR + Vehicle Access**
+10. **PARK-SWE2-010 — ANPR + Vehicle Access**
    - Plate binding.
    - Temporary allowlist grants.
    - Provider-neutral ANPR adapter.
    - Wrong-plate/wrong-gate/stale/replay tests.
    - Privacy retention.
 
-10. **PARK-SWE2-010 — PARK-IT Access Box Foundation**
+11. **PARK-SWE2-011 — PARK-IT Access Box Foundation**
    - Threat model.
    - Device simulator.
    - Secure outbound transport.
@@ -113,26 +128,26 @@ TARGET PRODUCT: mobility-space marketplace + municipal/public parking + UVAR/ZTL
    - Offline expiring entitlement cache.
    - No physical deployment without owner gate.
 
-11. **PARK-SWE2-011 — EV / OCPP**
+12. **PARK-SWE2-012 — EV / OCPP**
    - Charger model.
    - OCPP adapter.
    - Booking/charger reservation.
    - Session/energy/tariff records.
    - Simulator/sandbox evidence.
 
-12. **PARK-SWE2-012 — Evidence + Trust + Disputes**
+13. **PARK-SWE2-013 — Evidence + Trust + Disputes**
     - Accepted rules/version.
     - Check-in/out evidence.
     - Incident/dispute timeline.
     - Retention policy.
     - Role-based evidence access.
 
-13. **PARK-SWE2-013 — Mobile/PWA Golden Path**
+14. **PARK-SWE2-014 — Mobile/PWA Golden Path**
     - Customer-grade search/listing/booking/payment/access flow.
     - Visible E2E.
     - Responsive mobile browser evidence.
 
-14. **PARK-SWE2-014 — Production/Staging Seal**
+15. **PARK-SWE2-015 — Production/Staging Seal**
     - Environment config.
     - API-key hygiene.
     - Observability.
@@ -153,6 +168,8 @@ TARGET PRODUCT: mobility-space marketplace + municipal/public parking + UVAR/ZTL
 - Marina/port operator production integrations.
 - Aerodrome/private-airfield operator production integrations and airside authorisation.
 - Production enforcement/penalty integration.
+- Production permit-authority/e-government credentials and agreements.
+- Authority electronic-signature/qualified-signature requirements where applicable.
 - National vehicle/emission registries or verification sources where access is restricted/contractual.
 - Real access-control hardware installation.
 - Physical relay/gate activation.
