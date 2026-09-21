@@ -8,7 +8,9 @@ A PARK-IT listing can represent a normal parking space, a private driveway, a ga
 
 The product goal is simple:
 
-> **I have a vehicle and need a place for a purpose. PARK-IT finds the right space, reserves it, grants time-bounded access and settles the transaction.**
+> **Driver:** I have a vehicle and need a place or need to know whether I may enter a zone. PARK-IT finds a compliant option, explains the rule, handles parking/booking/payment and grants access when applicable.
+
+> **City/operator:** I need to define zones, tariffs, permits, restrictions, occupancy and enforcement. PARK-IT turns them into versioned machine-readable policy and one driver experience.
 
 ## Product modes
 
