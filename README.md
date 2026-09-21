@@ -33,6 +33,9 @@ Operate public parking and urban vehicle access in the same driver platform.
 Examples:
 - paid parking zones
 - resident / visitor / business permits
+- ŤZP/disabled-person entitlements and reserved spaces
+- BEV/PHEV/low-emission tariff benefits where the authority chooses
+- delivery/supply, taxi, hotel, service and temporary special permits
 - digital parking cards and time credits
 - on-street/off-street municipal parking
 - P+R
@@ -145,6 +148,56 @@ Reason: Euro class below minimum
 Alternative: P+R North
 Parking: 2.00 EUR + public transport connection
 ```
+
+### Entitlements, discounts and special permits
+
+Municipal pricing and access must be rule-driven rather than hard-coded.
+
+A city can define an **entitlement** for a person, vehicle, organisation or permit class and attach benefits/conditions such as:
+- free parking
+- percentage or fixed-price discount
+- lower tariff band
+- free first N minutes/hours
+- higher/lower daily cap
+- longer maximum stay
+- access to otherwise restricted zones
+- use of reserved spaces
+- allowed entry only during configured time windows
+- limited monthly/day credits
+- exemption from a specific fee or restriction
+
+Typical configurable classes include:
+- BEV
+- PHEV
+- other low/zero-emission classes
+- persons with disabilities / ŤZP entitlement
+- resident
+- visitor
+- business/operator
+- delivery/supply vehicles
+- taxi
+- emergency/public service
+- municipal fleet
+- maintenance/contractor
+- hotel/guest
+- medical/home-care service
+- school/service access
+- temporary/event permit
+
+Example:
+
+```text
+Zone A base tariff ........ 2.00 EUR/h
+BEV ........................ 50% discount
+PHEV ....................... 25% discount
+ŤZP permit ................. free + reserved-space eligibility
+Resident permit ............ 0.50 EUR/h, max 24 h
+Supply permit .............. entry 06:00-10:00, 60 min parking
+Emergency/service .......... exempt
+```
+
+These are examples of **configurable policy**, not assumed legal entitlements. Each municipality publishes its own authoritative rules, eligibility evidence, scope and effective dates.
+
 
 ### Assisted zone builder
 
