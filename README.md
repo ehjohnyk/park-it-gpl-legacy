@@ -1,10 +1,10 @@
 # PARK-IT
 
-**PARK-IT is an automotive space marketplace, public parking/UVAR platform and smart-access system.**
+**PARK-IT is a mobility-space marketplace, public parking/UVAR platform and smart-access system for vehicles and special mobile assets.**
 
 The original project started as a web parking assistant that finds nearby parking and navigates the driver to an available space. The target product is now broader: one platform for discovering, booking, paying for and accessing physical spaces around mobility **and** for cities/operators to define public parking zones, permits, tariffs and vehicle-access regulations.
 
-A PARK-IT listing can represent a normal parking space, a private driveway, a garage, long-term vehicle storage, an EV charging space, a detailing bay, a DIY workshop or a professional service bay.
+A PARK-IT listing can represent a normal parking space, private driveway, garage, long-term vehicle storage, EV charging space, detailing/DIY workshop bay, truck park, heavy-haul staging yard, boat berth/dry storage, machinery yard or authorised aircraft stand/hangar.
 
 The product goal is simple:
 
@@ -51,6 +51,21 @@ Examples:
 - ANPR enforcement, scan cars and fixed cameras
 - occupancy sensors and live availability
 - municipal backoffice, analytics and open-data feeds
+
+### SPECIAL / ASSET
+Find compatible storage, staging or authorised parking for assets beyond ordinary cars.
+
+Examples:
+- abnormal/oversize transport staging
+- heavy-haul permit waiting areas
+- secure laydown yards
+- boats/yachts and boat trailers
+- marina berths and dry storage
+- work/construction/agricultural machinery
+- mobile cranes
+- industrial equipment
+- private/GA aircraft hangars and authorised stands
+- helicopter/tie-down spaces
 
 ### GARAGE
 Rent private automotive space for a period of time.
@@ -299,6 +314,59 @@ PARK-IT should support European safe-and-secure truck-parking data and DATEX II 
 For professional drivers, a future route planner can take an externally supplied/driver-entered rest deadline or remaining-driving-time constraint and find a compliant reachable parking option. PARK-IT must not claim certified tachograph/legal-hours compliance unless that module is separately validated for the applicable law.
 
 
+## Special assets, oversize transport and non-car parking
+
+PARK-IT should separate **asset compatibility** from **route/legal access compatibility**.
+
+A space may physically fit an asset but still be unreachable without a permit, escort, authorised route or operator approval.
+
+Core model:
+
+```text
+ASSET
+ + ASSET ENVELOPE
+ + TRANSPORT CONFIGURATION
+ + SPACE/FACILITY CAPABILITIES
+ + REGULATORY REQUIREMENTS
+ + BOOKING / ACCESS / PAYMENT
+```
+
+Supported use cases include:
+- abnormal-load and heavy-haul staging
+- oversized indivisible cargo
+- boats/yachts, trailers, marina berths and dry storage
+- excavators, cranes, agricultural/construction machinery
+- secure equipment yards
+- private/GA aircraft hangars and operator-authorised apron/stand parking
+
+Examples:
+
+```text
+28 m abnormal transport / 80 t
+-> compatible staging yard
+-> gate/turning/ground-load check
+-> route/permit status
+-> escort/time-window requirements
+
+9.2 m boat / 3.1 m beam
+-> berth or dry storage
+-> draught/beam/hoist compatibility
+
+24 t excavator
+-> hardstanding yard
+-> low-loader access
+-> spill/security requirements
+
+Cessna 172
+-> hangar/stand compatibility
+-> aerodrome/operator approval required
+```
+
+For aviation, abnormal transport and other regulated/high-risk cases, PARK-IT may assist with compatibility and workflow but cannot self-authorise permits, airside access or regulated movements.
+
+See [docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md](docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md).
+
+
 ## Host marketplace
 
 Any eligible owner or operator can publish unused automotive space.
@@ -438,6 +506,28 @@ Examples:
 - OUT_OF_SERVICE
 
 Freshness must be explicit. Stale telemetry may not be presented as live truth.
+
+## Dynamic curb, temporary rules, roaming and fleet API
+
+PARK-IT should also treat street/curb space as a time-dependent resource.
+
+Example:
+
+```text
+CURB SEGMENT #821
+06:00-10:00 DELIVERY
+10:00-17:00 PAID PARKING
+17:00-19:00 RESIDENT ONLY
+19:00-02:00 TAXI / PICKUP
+EVENT MODE  NO STOPPING
+```
+
+Authorities can publish temporary rules for cleaning, snow, roadworks, markets, sport/events, emergency closures or abnormal-load passage. Rules are effective-dated, versioned, automatically expire and may trigger rerouting/booking notifications.
+
+A future roaming layer lets one PARK-IT account use multiple cities/operators through provider adapters while preserving each authority's own rules and permit validity.
+
+A B2B Fleet/Logistics API should expose access decisions, loading/curb rules, compatible parking/staging, permits, reservations and reason codes for delivery fleets, buses, heavy haul, construction and service fleets.
+
 
 ## Search and ranking
 
@@ -651,6 +741,7 @@ Prefer standards and permissively licensed components over proprietary lock-in.
 Strong candidates:
 - **APDS** for parking-data interoperability
 - **DATEX II Parking + UVAR** for European public parking/access-regulation interoperability
+- **Open Mobility Foundation CDS** for curb/loading/parking regulation interoperability
 - **OpenStreetMap** data
 - **MapLibre GL JS** for map rendering
 - **Valhalla or OSRM** for routing
@@ -686,6 +777,7 @@ The current execution program is defined in:
 - [SWE2_HIGH_EXECUTION_QUEUE.md](SWE2_HIGH_EXECUTION_QUEUE.md)
 - [docs/PARK_IT_PRODUCT_ARCHITECTURE.md](docs/PARK_IT_PRODUCT_ARCHITECTURE.md)
 - [docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md](docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md)
+- [docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md](docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md)
 - [docs/OPEN_SOURCE_REUSE_AUDIT.md](docs/OPEN_SOURCE_REUSE_AUDIT.md)
 - [docs/DEVIN_EXECUTION_BRIEF.md](docs/DEVIN_EXECUTION_BRIEF.md)
 
