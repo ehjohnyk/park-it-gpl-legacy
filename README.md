@@ -34,6 +34,8 @@ INTENT
 
 The canonical complete scope is documented in [docs/MOBILITY_SPACE_PLATFORM_SCOPE.md](docs/MOBILITY_SPACE_PLATFORM_SCOPE.md).
 
+The frozen V2 engineering baseline is [docs/PARK_IT_V2_ARCHITECTURE_FREEZE.md](docs/PARK_IT_V2_ARCHITECTURE_FREEZE.md). Material deviations require an ADR and owner approval.
+
 
 ## Product modes
 
