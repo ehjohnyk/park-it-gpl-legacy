@@ -67,6 +67,11 @@ Minimum entities:
 - TariffPlan
 - PermitType
 - Permit
+- EntitlementPolicy
+- EntitlementGrant
+- TariffBenefit
+- ReservedSpaceClass
+- VerificationEvidence
 - CreditAccount
 - PublicParkingSession
 - VehiclePolicyProfile
@@ -310,6 +315,51 @@ Support:
 - extension where policy permits
 
 The authoritative parking session must be verifiable by enforcement adapters.
+
+## 7C. Entitlement / benefit engine
+
+Municipal special treatment must use a reusable entitlement engine.
+
+Subjects:
+- person/account
+- vehicle
+- fleet/organisation
+- permit
+
+Predicates:
+- zone/space
+- vehicle propulsion (BEV/PHEV/etc.)
+- emission class
+- disability/accessible-parking entitlement
+- residency
+- permit class
+- organisation role
+- time/effective period
+- credits/quota
+
+Actions:
+- free parking
+- percentage/fixed discount
+- tariff override
+- max-stay override
+- zone-entry permission
+- reserved-space eligibility
+- fee/restriction exemption
+- time-window access
+- credit grant/consumption
+
+Pricing output must preserve:
+```text
+base tariff
++/- adjustments
++ matched entitlement/rule IDs
+= final tariff
+```
+
+Accessible-space eligibility and pricing are separate decisions.
+
+Examples such as BEV/PHEV discounts, ŤZP benefits or supply permits are municipality-configured policy; the core must not presume a universal legal entitlement.
+
 
 ## 7D. Enforcement
 
