@@ -327,6 +327,50 @@ PARK-IT can request quotes and attach the selected provider to PermitCase.
 
 Provider qualifications must be verified where regulated.
 
+## 12A. Identity, signature and trusted delivery
+
+Authority adapters may require:
+- national eID/e-government login
+- eIDAS-compatible identification
+- advanced or qualified electronic signature
+- electronic seal
+- trusted timestamp
+- registered electronic delivery
+- official eDesk/mailbox
+
+PARK-IT should implement a TrustServiceAdapter boundary rather than assuming one national identity/signature technology.
+
+Every signed/submitted document preserves:
+- signer/seal identity
+- signature level
+- validation result
+- timestamp
+- document hash
+- authority destination
+- delivery receipt
+
+## 12B. Document intelligence
+
+Document AI may:
+- OCR/parse uploaded technical documents
+- extract vehicle/load dimensions
+- extract axle count/spacing/loads
+- detect document type/version
+- extract permit validity/conditions
+- compare values across documents
+- prefill application fields
+- detect contradictions/missing attachments
+- translate non-authoritative helper text for the user
+
+Controls:
+- source page/file reference for every extracted field
+- confidence
+- human verification state
+- no fabricated missing value
+- authoritative original retained
+- redaction/privacy policy
+
+
 ## 13. Payments architecture
 
 Create a **Payment Orchestrator**, not a single-provider checkout.
@@ -443,6 +487,40 @@ Use PSP marketplace functionality for regulated onboarding/KYC and payout where 
 Use payment-provider preauthorisation/hold functionality where supported.
 
 Do not call a simple payment hold "escrow" unless the legal/payment arrangement genuinely qualifies.
+
+## 18A. Toll / vignette / road-charge orchestration
+
+Payment and route planning should also support regulated road charging.
+
+Potential categories:
+- motorway vignette
+- distance-based HGV toll
+- bridge/tunnel/ferry infrastructure charge
+- congestion charge
+- ZTL/LEZ access fee
+- special-route fee
+- permit administration fee
+
+Provider interfaces:
+```text
+RoadChargeProvider
+  quote(route, asset)
+  identifyRequiredProducts()
+  purchaseOrLink()
+  verifyCoverage()
+  reconcile()
+```
+
+European Electronic Toll Service (EETS) should be treated as an interoperability/integration target for electronically tolled road networks.
+
+PARK-IT must not duplicate a toll or vignette purchase when a fleet vehicle is already covered by its EETS/fleet provider.
+
+## 18B. Freight information interoperability
+
+Track the EU eFTI framework as a future integration point for electronic freight information exchanged with authorities.
+
+The PermitCase/Document model should be able to reference certified external freight-information platforms/documents without copying authority status incorrectly.
+
 
 ## 19. Billing / receipts / invoices
 
