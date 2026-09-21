@@ -1,8 +1,10 @@
 # Agent Operating Contract
 
+**MANDATORY ENTRYPOINT:** read `AGENT_READ_FIRST.md` first in every new agent session. Its reading order and precedence rules are canonical.
+
 Every coding agent, orchestrator and subagent must read and follow `MASTER_AUTONOMOUS_COMPLETION_PROTOCOL.md` before substantial work.
 
-For PARK-IT V2, `docs/PARK_IT_V2_ARCHITECTURE_FREEZE.md` is the canonical product/architecture baseline. It is mandatory reading before planning or implementation. An agent must not silently deviate from it. A material deviation requires an ADR under `docs/adr/` and explicit owner approval before implementation.
+For PARK-IT V2, `docs/PARK_IT_V2_ARCHITECTURE_FREEZE.md` is the canonical product/architecture baseline. `AGENT_AUTONOMOUS_EXECUTION_POLICY_V4.md`, `AGENT_AUTONOMOUS_EXECUTION_POLICY_V5.md`, and `docs/CI_RUNBOOK.md` are mandatory for autonomous CI/continuation behavior. It is mandatory reading before planning or implementation. An agent must not silently deviate from it. A material deviation requires an ADR under `docs/adr/` and explicit owner approval before implementation.
 
 A substantial task is part of the whole-project completion program, not an isolated slice. Maintain an executable dependency-aware master graph, use parallel specialist/subagent audits where useful, continue automatically with the next machine-solvable item after a track closes, and reserve `Task complete` for full machine-exhaustion of the project.
 
