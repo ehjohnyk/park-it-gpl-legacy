@@ -101,6 +101,17 @@ Minimum entities:
 - TemporaryRule
 - RoamingProviderMapping
 - FleetAccount
+- PermitCase
+- AuthorityRulePack
+- PermitSubmission
+- AuthorityConsultation
+- PermitDecision
+- ApprovedRoute
+- PaymentMethodProfile
+- PaymentTransaction
+- FinancialLedgerEntry
+- MarketplacePayee
+- Payout
 
 Use immutable identifiers and explicit state transitions.
 
@@ -489,7 +500,79 @@ Roaming adapters map PARK-IT sessions/payments to external city/operator systems
 FleetAccount/API supports bulk vehicles/assets, time windows, permit references, access decisions, loading/curb rules, compatible staging/parking and reservations.
 
 
-## 7H. Enforcement
+## 7H. Permit orchestration
+
+PermitCase is the generic workflow for movements/use cases that require external authority approval.
+
+Key principle:
+
+```text
+PARK-IT coordinates.
+Authority/operator authorises.
+```
+
+PermitCase must retain:
+- applicant
+- asset/transport configuration
+- candidate/approved routes
+- jurisdiction/authority graph
+- RulePack versions
+- required evidence/documents
+- consultations
+- authority requests/responses
+- fees
+- permit/decision documents
+- machine-readable conditions
+- validity
+- trip-day status
+
+Route states:
+- NAVIGATION_ROUTE
+- ENGINEERING_CANDIDATE_ROUTE
+- AUTHORITY_SUBMITTED_ROUTE
+- AUTHORITY_APPROVED_ROUTE
+- TRIP_DAY_VALIDATED_ROUTE
+
+No lower-trust route can be silently promoted to an authority-approved route.
+
+AuthorityRulePack must be effective-dated, sourced and versioned.
+
+## 7I. Payment orchestration
+
+Create a provider-neutral Payment Orchestrator over one or more licensed PSPs.
+
+PaymentMethodProfile can represent:
+- card
+- Apple Pay
+- Google Pay
+- PayPal
+- SEPA/bank/open banking
+- local payment method
+- invoice
+- fleet payment method
+- municipal credit
+
+Financial flows:
+- authorisation
+- adjustment
+- capture
+- split
+- refund
+- partial refund
+- chargeback
+- transfer
+- payout
+- permit/authority fee
+- platform commission
+
+The core financial ledger references provider objects but does not use provider objects as domain truth.
+
+Marketplace seller/operator onboarding and payouts should use PSP platform/marketplace KYC capabilities where possible.
+
+Do not implement a stored-value wallet/escrow product without specific legal/payment-regulatory review.
+
+
+## 7J. Enforcement
 
 Normalize enforcement observations from:
 - handheld app
@@ -511,7 +594,7 @@ Observation
 
 PARK-IT stores the evidence/audit trail and produces a violation candidate. Jurisdiction-specific legal penalty issuance remains outside the generic core unless explicitly integrated and authorised.
 
-## 7I. Standards
+## 7K. Standards
 
 Public interoperability boundaries should evaluate:
 - DATEX II Parking
