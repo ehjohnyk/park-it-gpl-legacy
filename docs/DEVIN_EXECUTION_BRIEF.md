@@ -87,6 +87,11 @@ Acceptance:
 - resident/visitor/time-credit model
 - public parking sessions
 - vehicle policy profile
+- VehicleEnvelope/VehicleCombination for vans, buses, HGVs and trailers
+- restrictions by length/width/height/max permissible mass/axles/combination/trailer
+- HGV overnight/loading/ADR restrictions
+- TruckParkingFacility capacity/services/security model
+- DATEX II safe & secure truck parking profile evaluation
 - Euro class / propulsion / size / weight / time based access rules
 - ZTL / LEZ / ZEZ / congestion/access-fee decisions
 - deterministic reason codes
@@ -104,6 +109,10 @@ Acceptance:
 - multiple-entitlement precedence/conflict tests
 - accessible-space eligibility separate from pricing tests
 - special-permit time-window/zone/fleet tests
+- van/HGV dimensional and mass restriction matrix tests
+- articulated/trailer compatibility tests
+- wrong mass-semantics negative tests (max permissible vs actual)
+- truck facility compatibility/capacity/freshness tests
 - no draft regulation can affect driver/enforcement decisions
 - authoritative publish is audited
 - provider/map-derived data licensing documented
@@ -225,6 +234,16 @@ Marketplace visible E2E:
 8. active booking
 9. checkout
 10. settlement/review
+
+Heavy-vehicle E2E:
+1. select HGV + trailer fixture (16.5 m / 40 t)
+2. request parking near a destination
+3. reject passenger/municipal candidates incompatible by size/weight/regulation
+4. show legal HGV alternatives
+5. filter security/services and live capacity
+6. reserve a compatible truck space in sandbox
+7. simulated ANPR/gate entry
+8. occupancy updates and booking closes
 
 Municipal driver E2E:
 1. choose destination and vehicle
