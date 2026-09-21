@@ -194,6 +194,49 @@ Recommendation:
 - PARK-IT Access Box should have its own secure protocol
 - Home Assistant/MQTT can be an optional adapter, not the security authority
 
+### Permit workflow benchmarks — VEMAGS / RDW-DWO
+These are not open-source components to copy; they are workflow/product references.
+
+Germany:
+- VEMAGS electronically supports heavy/oversize transport application, authority consultation, statements, conditions and issuance.
+
+Netherlands:
+- RDW/DWO supports exceptional-transport applications, route proposals and consultation with road managers.
+
+Slovakia:
+- abnormal/overweight transport is handled as special road use under national road law, with competence/consents depending on route and authority.
+
+Recommendation:
+- PARK-IT should build PermitAuthorityAdapter + AuthorityRulePack abstractions.
+- Country integrations must rely on current authoritative processes/agreements rather than scraping portals without permission.
+- Where no API exists, generate structured application packages and keep a human/operator-assisted submission path.
+
+### Payment platform references
+Strong current candidates to evaluate:
+- Adyen for Platforms
+- Stripe Connect
+- PayPal/Braintree platform/checkout capabilities
+
+Required evaluation:
+- Apple Pay / Google Pay
+- cards
+- PayPal
+- SEPA/open banking/local methods
+- marketplace seller onboarding/KYC
+- split payments
+- preauthorisation/capture
+- refunds/chargebacks
+- payouts
+- country support
+- pricing
+- PSD2/SCA
+- reconciliation/webhooks
+
+Recommendation:
+- choose one primary PSP for V2 sandbox, keep PaymentGateway/MarketplaceGateway interfaces.
+- do not implement our own custody/KYC/payout rails.
+
+
 ## Caution / do not directly embed without licensing decision
 
 ### OpenALPR
@@ -262,6 +305,10 @@ These are core differentiation and should remain first-class domain code:
 - OversizePermitProvider
 - Marina/PortProvider
 - AerodromeGroundSpaceProvider
+- PermitAuthorityAdapter
+- AuthorityRuleProvider
+- PaymentGateway
+- MarketplaceGateway
 - DATEXIIAdapter
 - PermitProvider
 - EnforcementProvider
