@@ -71,6 +71,34 @@ Recommendation:
 - differentiate with unified private marketplace + garages/workshops + smart access + general UVAR/vehicle-policy engine + assisted zoning
 
 
+### Open Mobility Foundation Curb Data Specification (CDS)
+Repository: `openmobilityfoundation/curb-data-specification`
+Repository licence file: Creative Commons Attribution 4.0.
+
+Why useful:
+- static and dynamic curb/parking regulation exchange
+- loading/pickup/dropoff use cases
+- events and curb activity/metrics
+- city/operator API patterns
+
+Recommendation:
+- use CDS as an import/export/interoperability reference for curb management
+- keep PARK-IT's internal RegulationVersion/CurbSegment model richer and jurisdiction-neutral
+- verify attribution/version/licensing obligations for any copied schema/material
+
+### Abnormal transport / aviation standards
+Not a single open-source component to embed.
+
+Relevant authorities/standards to track:
+- EU vehicle weights/dimensions framework
+- national/regional abnormal-load permit processes
+- EASA/ICAO aerodrome rules and operator procedures
+
+Recommendation:
+- encode provider/authority adapters and provenance rather than attempting to create one global legal rule table
+- treat permit/operator confirmation as external authority state
+
+
 ### MapLibre GL JS
 Repository: `maplibre/maplibre-gl-js`
 
@@ -216,6 +244,11 @@ These are core differentiation and should remain first-class domain code:
 - UVAR/LEZ/ZTL policy evaluation
 - assisted zone builder + topology validation
 - public permit/session/enforcement normalization
+- special AssetEnvelope compatibility
+- oversize staging + permit/route workflow
+- marine/aircraft/machinery space compatibility
+- dynamic curb + temporary-rule model
+- parking roaming + fleet/logistics API
 
 ## Provider interfaces to define early
 
@@ -225,6 +258,10 @@ These are core differentiation and should remain first-class domain code:
 - ParkingDataProvider
 - MunicipalGISProvider
 - PublicRegulationProvider
+- CurbDataProvider
+- OversizePermitProvider
+- Marina/PortProvider
+- AerodromeGroundSpaceProvider
 - DATEXIIAdapter
 - PermitProvider
 - EnforcementProvider
