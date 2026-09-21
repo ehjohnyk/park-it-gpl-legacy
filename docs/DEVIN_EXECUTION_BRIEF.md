@@ -14,6 +14,7 @@ Follow:
 5. `docs/PARK_IT_PRODUCT_ARCHITECTURE.md`
 6. `docs/OPEN_SOURCE_REUSE_AUDIT.md`
 7. `docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md`
+8. `docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md`
 
 ## Mandatory first action
 
@@ -91,6 +92,15 @@ Acceptance:
 - restrictions by length/width/height/max permissible mass/axles/combination/trailer
 - HGV overnight/loading/ADR restrictions
 - TruckParkingFacility capacity/services/security model
+- generic Asset/AssetEnvelope model
+- abnormal-load staging + OversizeMovementPlan/permit provenance
+- boat/marina/dry-storage compatibility
+- machinery yard/low-loader compatibility
+- authorised aircraft hangar/stand compatibility
+- dynamic curb/CDS model
+- temporary event/emergency rules
+- parking roaming/provider mapping
+- Fleet/Logistics API
 - DATEX II safe & secure truck parking profile evaluation
 - Euro class / propulsion / size / weight / time based access rules
 - ZTL / LEZ / ZEZ / congestion/access-fee decisions
@@ -113,6 +123,14 @@ Acceptance:
 - articulated/trailer compatibility tests
 - wrong mass-semantics negative tests (max permissible vs actual)
 - truck facility compatibility/capacity/freshness tests
+- special asset envelope compatibility tests
+- oversize space-compatible-but-route-unverified fail-closed tests
+- boat berth/beam/draught and dry-storage tests
+- machinery low-loader/gate/ground-capacity tests
+- aircraft operator-approval-required tests
+- curb schedule/temporary override/expiry tests
+- roaming permit-non-transfer tests
+- fleet bulk-evaluation tests
 - no draft regulation can affect driver/enforcement decisions
 - authoritative publish is audited
 - provider/map-derived data licensing documented
@@ -235,6 +253,21 @@ Marketplace visible E2E:
 9. checkout
 10. settlement/review
 
+Special-asset E2E:
+1. create abnormal-load fixture and compatible staging yard
+2. verify facility compatibility but route status UNKNOWN without permit
+3. attach simulated authority permit/corridor and re-evaluate
+4. reserve staging slot
+5. show time-window/escort metadata and audit provenance
+6. complete access/checkout
+
+Marine/machinery fixtures:
+- boat berth/dry-storage compatibility
+- work-machine low-loader/yard compatibility
+
+Aviation fixture:
+- hangar/stand is never ALLOW without simulated authorised operator approval
+
 Heavy-vehicle E2E:
 1. select HGV + trailer fixture (16.5 m / 40 t)
 2. request parking near a destination
@@ -299,6 +332,7 @@ Municipal operator E2E:
 Evaluate, do not blindly import:
 - parkingdata/spec (APDS)
 - DATEX-II-EU/datexiimodel + current official DATEX II Parking/UVAR specifications
+- openmobilityfoundation/curb-data-specification (CDS)
 - maplibre/maplibre-gl-js
 - valhalla/valhalla
 - Project-OSRM/osrm-backend
