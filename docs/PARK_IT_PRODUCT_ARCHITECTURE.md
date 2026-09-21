@@ -2,7 +2,7 @@
 
 ## 1. Product thesis
 
-PARK-IT evolves from a parking finder into a marketplace for automotive spaces, access and related services.
+PARK-IT evolves from a parking finder into a unified platform for private automotive-space marketplace inventory, public/municipal parking, urban vehicle access regulations, smart access and related services.
 
 Core abstraction:
 
@@ -58,6 +58,23 @@ Minimum entities:
 - Review
 - Notification
 - AuditEvent
+- Municipality
+- MunicipalAuthority
+- RegulatoryZone
+- CurbSegment
+- Regulation
+- RegulationVersion
+- TariffPlan
+- PermitType
+- Permit
+- CreditAccount
+- PublicParkingSession
+- VehiclePolicyProfile
+- AccessRegulationDecision
+- EnforcementObservation
+- ViolationCandidate
+- SensorDevice
+- OccupancyObservation
 
 Use immutable identifiers and explicit state transitions.
 
@@ -203,6 +220,128 @@ Candidate signals:
 - cancellation flexibility
 - security
 - charger compatibility
+
+## 7A. Municipal/public policy engine
+
+Public regulation is authoritative policy, not a normal HostRule.
+
+Rule scopes:
+1. platform safety/privacy controls
+2. public authority regulation
+3. private host/property rules
+4. booking-specific terms
+
+A public RegulationVersion must bind:
+- authority
+- legal/source reference
+- geometry/version
+- effectiveFrom/effectiveTo
+- vehicle/user applicability
+- schedule
+- tariff/permit requirement
+- exemptions
+- publication state
+
+Vehicle-aware predicates may include:
+- vehicle category
+- Euro emission class
+- propulsion/fuel
+- zero-emission status
+- weight/dimensions
+- residence/permit
+- disability/emergency/service status
+- time/day/season
+- event/air-quality/congestion trigger
+
+Decision outputs:
+- ALLOW
+- DENY
+- ALLOW_WITH_FEE
+- REQUIRE_PERMIT
+- REQUIRE_REGISTRATION
+- REQUIRE_PAYMENT
+- EXEMPT
+- WARNING
+- UNKNOWN
+
+Every decision must return the exact RegulationVersion and reason codes used.
+
+## 7B. Public zoning / GIS
+
+Use PostGIS for authoritative/draft geometries:
+- area polygon
+- curb/road line
+- point restriction/entry
+- gate
+- individual space
+
+Provide import pipelines for:
+- GeoJSON
+- Shapefile/GPKG
+- municipal WFS/WMS where appropriate
+- OpenStreetMap/open road graph
+- other licensed map/GIS sources
+
+Automatic/AI zoning is a proposal system only:
+
+```text
+SOURCE DATA
+-> NORMALISE
+-> PROPOSE BOUNDARIES/SEGMENTS
+-> DETECT GAPS/OVERLAPS
+-> ASSIGN DRAFT RULES
+-> HUMAN REVIEW
+-> VERSIONED PUBLISH
+```
+
+No inferred map restriction becomes authoritative without an authorised publish action.
+
+## 7C. Public parking sessions and permits
+
+Support:
+- resident/visitor/business permits
+- time-credit accounts
+- discounts/exemptions
+- zone ticket/session purchase
+- max-stay/grace rules
+- event/dynamic tariffs
+- P+R
+- extension where policy permits
+
+The authoritative parking session must be verifiable by enforcement adapters.
+
+## 7D. Enforcement
+
+Normalize enforcement observations from:
+- handheld app
+- scan car
+- fixed ANPR
+- gate/entry camera
+- occupancy sensor
+
+Evaluation:
+
+```text
+Observation
+-> location + active RegulationVersion
+-> plate/vehicle normalisation
+-> active session/permit/exemption
+-> policy decision
+-> COMPLIANT | SUSPECTED_VIOLATION | UNKNOWN
+```
+
+PARK-IT stores the evidence/audit trail and produces a violation candidate. Jurisdiction-specific legal penalty issuance remains outside the generic core unless explicitly integrated and authorised.
+
+## 7E. Standards
+
+Public interoperability boundaries should evaluate:
+- DATEX II Parking
+- DATEX II UVAR / machine-interpretable traffic regulation profiles
+- APDS
+- National Access Point feeds
+
+Internal models remain provider/standard-neutral.
+
 
 ## 8. Access architecture
 
