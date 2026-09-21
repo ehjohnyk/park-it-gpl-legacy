@@ -1,5 +1,7 @@
 # Devin Execution Brief — PARK-IT V2
 
+**START HERE:** before any audit, plan, code or CI action, read and obey root `AGENT_READ_FIRST.md`. Its mandatory reading order supersedes the abbreviated list below.
+
 ## Mission
 
 Transform the legacy PARK-IT parking prototype into a production-shaped complete Mobility-Space Management Platform spanning public/private parking, UVAR, curb, freight/special assets, permit orchestration, payments, access and fleet/operator integrations.
@@ -18,6 +20,14 @@ Follow in this precedence order:
 9. `docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md`
 10. `docs/MOBILITY_SPACE_PLATFORM_SCOPE.md`
 11. `docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md`
+12. `AGENT_AUTONOMOUS_EXECUTION_POLICY_V4.md`
+13. `AGENT_AUTONOMOUS_EXECUTION_POLICY_V5.md`
+14. `docs/CI_RUNBOOK.md`
+15. `MASTER_PRODUCT_CURRENT_STATE.md`
+16. `MASTER_PRODUCT_COMPLETION_DAG.md`
+17. `MASTER_PRODUCT_EXECUTION_LEDGER.md`
+18. `MASTER_PRODUCT_EXTERNAL_BLOCKERS.md`
+19. `MASTER_PRODUCT_EVIDENCE_INDEX.md`
 
 ## Mandatory first action
 
