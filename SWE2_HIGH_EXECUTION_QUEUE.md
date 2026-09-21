@@ -37,6 +37,7 @@ TARGET PRODUCT: automotive space marketplace + municipal/public parking + UVAR/Z
    - MapLibre frontend.
    - Routing adapter; evaluate Valhalla/OSRM.
    - Destination + intent search.
+   - Heavy-vehicle compatible parking search and routing.
    - Deterministic explainable ranking.
    - Truthful stale/unknown availability.
 
@@ -48,6 +49,9 @@ TARGET PRODUCT: automotive space marketplace + municipal/public parking + UVAR/Z
    - Resident/visitor/business permits and credits.
    - Public parking sessions.
    - Vehicle eligibility incl. Euro class/propulsion/weight/dimensions.
+   - Vans/HGVs/buses/trailers/articulated combinations.
+   - Length/height/width/max-permissible-mass/axle/ADR/overnight restrictions.
+   - Truck parking capacity/services/security + DATEX II SSTP boundary.
    - ZTL/LEZ/ZEZ/congestion/access-fee rules.
    - DATEX II/APDS boundaries.
    - GIS import + draft Zone Builder.
