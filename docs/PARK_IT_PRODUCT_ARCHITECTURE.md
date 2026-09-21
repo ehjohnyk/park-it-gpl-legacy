@@ -153,11 +153,12 @@ Example:
 
 ## 5. Rules engine
 
-Three rule scopes:
+Four rule scopes:
 
-1. Platform policy
-2. Host/property policy
-3. Booking-specific policy
+1. Platform safety/privacy policy
+2. Public-authority regulation
+3. Host/property policy
+4. Booking-specific policy
 
 Evaluation output must be deterministic:
 - ALLOW
@@ -167,7 +168,7 @@ Evaluation output must be deterministic:
 - REQUIRE_EVIDENCE
 - REQUIRE_IDENTITY_LEVEL
 
-Never let host rules weaken mandatory platform controls.
+Never let host rules weaken mandatory platform controls or public-authority regulations. Public regulations must be versioned, effective-dated and attributable to an authority.
 
 ## 6. Availability
 
