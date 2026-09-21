@@ -2,7 +2,7 @@
 
 ## Mission
 
-Transform the legacy PARK-IT parking prototype into a production-shaped automotive space marketplace with smart access.
+Transform the legacy PARK-IT parking prototype into a production-shaped automotive space marketplace, municipal/public parking and UVAR platform with smart access.
 
 Do not treat this brief as a one-slice coding request.
 
@@ -13,6 +13,7 @@ Follow:
 4. `SWE2_HIGH_EXECUTION_QUEUE.md`
 5. `docs/PARK_IT_PRODUCT_ARCHITECTURE.md`
 6. `docs/OPEN_SOURCE_REUSE_AUDIT.md`
+7. `docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md`
 
 ## Mandatory first action
 
@@ -73,7 +74,43 @@ Acceptance:
 - routing adapter with Valhalla/OSRM evaluation
 - stale/unknown availability semantics
 
-### P3 — Marketplace host flow
+### P3 — Municipal/Public Parking + UVAR Foundation
+- municipality/authority tenancy
+- RegulatoryZone / CurbSegment / RegulationVersion
+- authoritative/draft separation
+- tariff plans
+- permit types and digital permits
+- resident/visitor/time-credit model
+- public parking sessions
+- vehicle policy profile
+- Euro class / propulsion / size / weight / time based access rules
+- ZTL / LEZ / ZEZ / congestion/access-fee decisions
+- deterministic reason codes
+- DATEX II/APDS adapter research
+- GIS import (GeoJSON first)
+- draft zone builder + topology conflict detection
+- human approve/version/publish workflow
+- route compliance evaluation
+
+Acceptance:
+- effective-dated/versioned policy tests
+- overlapping-zone priority tests
+- vehicle eligibility matrix tests
+- no draft regulation can affect driver/enforcement decisions
+- authoritative publish is audited
+- provider/map-derived data licensing documented
+
+### P4 — Municipal Enforcement + Occupancy
+- public payment/permit verification
+- enforcement observation model
+- handheld/scan-car/fixed-ANPR adapter contracts
+- occupancy sensor contract
+- COMPLIANT / SUSPECTED_VIOLATION / UNKNOWN
+- evidence package
+- backoffice review queue
+- no automatic legal penalty from uncertain observations
+
+### P5 — Marketplace host flow
 - create/edit/publish space
 - photos
 - schedules
@@ -83,7 +120,7 @@ Acceptance:
 - instant/manual approval
 - vehicle dimension limits
 
-### P4 — Booking
+### P6 — Booking
 - quote
 - reserve
 - booking state machine
@@ -93,7 +130,7 @@ Acceptance:
 - concurrency
 - audit timeline
 
-### P5 — Payments/payouts
+### P7 — Payments/payouts
 - PaymentGateway abstraction
 - provider sandbox integration
 - connected-host onboarding
@@ -105,7 +142,7 @@ Acceptance:
 
 No real-money production activation without owner approval.
 
-### P6 — Smart Access
+### P8 — Smart Access
 Build Access Policy / Credential Engine.
 
 Adapters:
@@ -126,7 +163,7 @@ Acceptance:
 - provider outage behaviour
 - no permanent shared PIN design
 
-### P7 — ANPR
+### P9 — ANPR
 - vehicle/plate binding
 - temporary plate entitlement
 - local/provider adapter proof
@@ -136,7 +173,7 @@ Acceptance:
 
 Do not make one ANPR engine mandatory.
 
-### P8 — PARK-IT Access Box foundation
+### P10 — PARK-IT Access Box foundation
 Create only after threat model.
 
 Requirements:
@@ -151,7 +188,7 @@ Requirements:
 
 Physical hardware activation is an external/owner gate.
 
-### P9 — EV
+### P11 — EV
 - charger model
 - OCPP/EV adapter boundary
 - charger status/session
@@ -159,7 +196,7 @@ Physical hardware activation is an external/owner gate.
 - energy metering/price domain
 - sandbox/simulator evidence
 
-### P10 — Evidence/disputes/trust
+### P12 — Evidence/disputes/trust
 - accepted-rule version
 - check-in/out photos
 - incident/dispute
@@ -167,7 +204,7 @@ Physical hardware activation is an external/owner gate.
 - immutable hashes/metadata where appropriate
 - role-based evidence access
 
-### P11 — Mobile/PWA golden path
+### P13 — Mobile/PWA golden path
 Visible E2E:
 1. search destination/use case
 2. select space
@@ -180,7 +217,7 @@ Visible E2E:
 9. checkout
 10. settlement/review
 
-### P12 — Operations/release
+### P14 — Operations/release
 - observability
 - security headers
 - rate limits
@@ -199,6 +236,8 @@ Visible E2E:
 - provider adapters at every volatile external boundary
 - no fake "live" availability
 - no hard-coded map/payment/access vendor in domain
+- public regulations are effective-dated/versioned and authority-owned
+- AI/GIS auto-zoning only creates drafts; an authorised human publishes authoritative policy
 - physical access defaults fail-closed
 - every external callback is replayable/untrusted
 - all critical writes idempotent
@@ -210,6 +249,7 @@ Visible E2E:
 
 Evaluate, do not blindly import:
 - parkingdata/spec (APDS)
+- DATEX-II-EU/datexiimodel + current official DATEX II Parking/UVAR specifications
 - maplibre/maplibre-gl-js
 - valhalla/valhalla
 - Project-OSRM/osrm-backend
