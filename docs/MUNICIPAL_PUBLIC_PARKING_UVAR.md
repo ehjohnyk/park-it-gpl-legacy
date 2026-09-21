@@ -306,6 +306,100 @@ Rule: ZTL-2027-04 v3
 Alternative: P+R North, 1.8 km
 ```
 
+## 4A. Commercial / heavy-vehicle restriction model
+
+Vehicle restrictions must support more than passenger-car emission rules.
+
+Vehicle/combo attributes:
+- EU/national vehicle category where available
+- passenger / van / light commercial / HGV / bus / coach
+- rigid truck / tractor unit / articulated combination
+- trailer present
+- vehicle length/width/height
+- trailer length
+- total combination length
+- maximum permissible mass / GVWR
+- actual mass when an authoritative source is available and the rule requires it
+- axle count / axle-load class
+- body/use class
+- refrigerated vehicle
+- ADR/dangerous-goods classification
+- propulsion/fuel/emission class
+
+Typical authority rules:
+- no parking for vehicles > X m
+- no parking for vehicles > X t maximum permissible mass
+- no overnight HGV parking
+- commercial vehicles only during loading windows
+- truck/bus-only zone
+- trailer parking prohibited/allowed
+- residential-zone HGV ban
+- ADR vehicles prohibited or routed to dedicated areas
+- height/width/axle restrictions
+- exemptions for supply, municipal service, emergency or specific permits
+
+Rule evaluation must use the exact measurement semantics configured by the authority (for example maximum permissible mass versus measured/actual mass). Never silently substitute one for another.
+
+## 4B. Freight / truck parking network
+
+Model truck parking as structured capacity rather than POI-only data.
+
+Facility fields:
+- total HGV spaces
+- live/estimated available HGV spaces
+- reservation support
+- space dimensions/classes
+- maximum combination length
+- maximum height/width/weight
+- trailer-only capacity
+- bus/coach capacity
+- ADR eligibility
+- refrigerated-vehicle spaces
+- reefer electrical supply
+- secure perimeter/gate
+- ANPR
+- security/certification classification
+- toilets/showers
+- food/beverage
+- internet
+- fuel
+- repair/workshop
+- laundry
+- charging
+- operator/contact
+- tariffs
+- opening hours
+- freshness/source of occupancy
+
+Use the current DATEX II Safe and Secure Truck Parking reference profile at the interoperability boundary where applicable.
+
+## 4C. Freight-aware routing
+
+Routing must prevent a large vehicle from being directed to physically or legally unsuitable parking.
+
+Candidate generation must filter by:
+- route legality
+- vehicle envelope
+- municipal restrictions
+- facility acceptance
+- capacity/freshness
+- requested security/services
+- detour/ETA
+
+Professional-driver search should support a target such as:
+
+```text
+Find parking reachable within 45 minutes
+Vehicle: HGV 40 t / 16.5 m
+Need: overnight + shower
+Security: Silver or better
+ADR: no
+Reservation: preferred
+```
+
+A future driving/rest-time integration can consume validated tachograph/fleet or driver-provided constraints. Until legally validated, PARK-IT presents this as planning assistance rather than a legal-hours compliance determination.
+
+
 ## 5. Route-aware regulation
 
 Routing should evaluate restrictions before directing a driver into a regulated zone.
