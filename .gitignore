@@ -1,0 +1,11 @@
+# Secrets / local configuration
+.env
+.env.*
+!.env.example
+credentials.json
+*.pem
+*.key
+
+# Runtime / generated
+npm-debug.log*
+.DS_Store
