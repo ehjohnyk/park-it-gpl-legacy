@@ -5,7 +5,7 @@ PROJECT: PARK-IT
 
 RULE: Audit the legacy application before modernization; preserve useful working behavior while replacing brittle/deprecated boundaries incrementally.
 
-TARGET PRODUCT: automotive space marketplace + municipal/public parking + UVAR/ZTL/LEZ policy + booking + payments + smart physical access.
+TARGET PRODUCT: mobility-space marketplace + municipal/public parking + UVAR/ZTL/LEZ + freight/special assets + curb management + booking + payments + smart physical access.
 
 ## ACTIVE
 
@@ -38,6 +38,8 @@ TARGET PRODUCT: automotive space marketplace + municipal/public parking + UVAR/Z
    - Routing adapter; evaluate Valhalla/OSRM.
    - Destination + intent search.
    - Heavy-vehicle compatible parking search and routing.
+   - Special AssetEnvelope-compatible facility search.
+   - Route/permit provenance for abnormal transport.
    - Deterministic explainable ranking.
    - Truthful stale/unknown availability.
 
@@ -52,6 +54,9 @@ TARGET PRODUCT: automotive space marketplace + municipal/public parking + UVAR/Z
    - Vans/HGVs/buses/trailers/articulated combinations.
    - Length/height/width/max-permissible-mass/axle/ADR/overnight restrictions.
    - Truck parking capacity/services/security + DATEX II SSTP boundary.
+   - Dynamic curb/CDS + temporary rule model.
+   - Boats/marina/dry storage, machinery yards and authorised aircraft ground-space foundations.
+   - Roaming + Fleet/Logistics API contracts.
    - ZTL/LEZ/ZEZ/congestion/access-fee rules.
    - DATEX II/APDS boundaries.
    - GIS import + draft Zone Builder.
@@ -144,6 +149,9 @@ TARGET PRODUCT: automotive space marketplace + municipal/public parking + UVAR/Z
 - Real map/geocoding/provider keys where paid/contractual.
 - Authoritative external parking feeds.
 - Municipality-specific legal/VZN/regulation sources and production authority onboarding.
+- Abnormal-load permit authority integrations and authoritative route/bridge/clearance data.
+- Marina/port operator production integrations.
+- Aerodrome/private-airfield operator production integrations and airside authorisation.
 - Production enforcement/penalty integration.
 - National vehicle/emission registries or verification sources where access is restricted/contractual.
 - Real access-control hardware installation.
