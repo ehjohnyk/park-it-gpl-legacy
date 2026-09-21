@@ -204,8 +204,9 @@ Physical hardware activation is an external/owner gate.
 - immutable hashes/metadata where appropriate
 - role-based evidence access
 
-### P13 — Mobile/PWA golden path
-Visible E2E:
+### P13 — Mobile/PWA + Municipal Golden Paths
+
+Marketplace visible E2E:
 1. search destination/use case
 2. select space
 3. quote
@@ -216,6 +217,27 @@ Visible E2E:
 8. active booking
 9. checkout
 10. settlement/review
+
+Municipal driver E2E:
+1. choose destination and vehicle
+2. route crosses a regulated zone
+3. RegulationVersion evaluates vehicle eligibility
+4. show allow/deny/fee/permit reason
+5. when denied, reroute to a compliant boundary/P+R parking option
+6. when allowed, start a public parking session
+7. apply permit/credit/discount
+8. pay in sandbox
+9. simulated enforcement observation verifies session/permit
+10. session expires/closes with audit evidence
+
+Municipal operator E2E:
+1. import GeoJSON test zone
+2. Zone Builder creates draft segments/rules
+3. topology/conflict validation
+4. authorised operator reviews and publishes version
+5. future effective date activates deterministically
+6. driver and enforcement decisions reference the exact published version
+7. rollback/version-history evidence works
 
 ### P14 — Operations/release
 - observability
