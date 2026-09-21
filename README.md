@@ -26,6 +26,7 @@ Examples:
 - event parking
 - monthly parking
 - motorcycle / trailer / caravan parking
+- van / bus / truck / articulated-combination parking
 
 ### CITY / MUNICIPAL
 Operate public parking and urban vehicle access in the same driver platform.
@@ -45,7 +46,7 @@ Examples:
 - pedestrian/residential access zones
 - congestion/access fees
 - loading/delivery windows
-- vehicle restrictions by Euro emission class, fuel, category, dimensions or weight
+- vehicle restrictions by Euro emission class, fuel, category, length, width, height, weight, axle/combination class or trailer
 - temporary/event restrictions
 - ANPR enforcement, scan cars and fixed cameras
 - occupancy sensors and live availability
@@ -230,6 +231,74 @@ Machine observations create a compliance result or **suspected violation evidenc
 See [docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md](docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md).
 
 
+## Heavy vehicle / freight parking
+
+PARK-IT must treat vans, buses, trucks and articulated combinations as first-class vehicles, not oversized passenger cars.
+
+A city, road operator or private truck-stop operator can publish restrictions such as:
+- no vans/commercial vehicles above a configured length
+- no vehicles above a configured maximum permissible mass
+- no HGV parking in residential zones
+- no trailers or articulated combinations
+- height/width/axle-load restrictions
+- bus-only / truck-only / delivery-only areas
+- daytime loading allowed but overnight parking prohibited
+- time-window access for commercial vehicles
+- ADR/dangerous-goods restrictions
+- refrigerated-vehicle restrictions or designated areas
+
+The driver experience must answer both:
+1. **Where am I legally allowed to stop/park this exact vehicle combination?**
+2. **Where is there actually suitable capacity?**
+
+Example:
+
+```text
+Vehicle:
+tractor + semi-trailer
+combination length: 16.5 m
+max permissible mass: 40 t
+height: 4.0 m
+ADR: NO
+
+Destination area:
+City centre
+
+Result:
+Municipal Zone A ........ DENIED (vehicles > 3.5 t)
+Industrial Zone HGV .... ALLOWED, 8 spaces
+Secure Truck Park East . ALLOWED, 23 spaces, bookable
+P+R ..................... DENIED (max length 6.0 m)
+```
+
+### Truck parking facilities
+
+A truck-parking facility can describe:
+- HGV capacity and live occupancy
+- reservable/non-reservable spaces
+- maximum vehicle/combination dimensions
+- weight/axle constraints
+- trailer parking
+- bus/coach eligibility
+- ADR eligibility
+- refrigerated-vehicle support and reefer power
+- security/certification level
+- gated/ANPR access
+- toilets/showers
+- food/drink
+- Wi-Fi
+- fuel
+- workshop/repair
+- laundry
+- EV/HGV charging
+- overnight stay
+- pricing and cancellation rules
+
+PARK-IT should support European safe-and-secure truck-parking data and DATEX II exchange at provider boundaries.
+
+For professional drivers, a future route planner can take an externally supplied/driver-entered rest deadline or remaining-driving-time constraint and find a compliant reachable parking option. PARK-IT must not claim certified tachograph/legal-hours compliance unless that module is separately validated for the applicable law.
+
+
 ## Host marketplace
 
 Any eligible owner or operator can publish unused automotive space.
@@ -381,6 +450,7 @@ Examples:
 - "Workshop bay with a lift for two hours."
 - "Monthly dry storage for a classic car."
 - "Parking with EV charging overnight."
+- "Find secure parking for a 16.5 m / 40 t truck within 45 minutes, with shower and bookable space."
 
 Ranking inputs may include:
 - availability
