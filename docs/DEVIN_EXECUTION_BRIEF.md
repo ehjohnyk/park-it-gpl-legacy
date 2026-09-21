@@ -2,7 +2,7 @@
 
 ## Mission
 
-Transform the legacy PARK-IT parking prototype into a production-shaped automotive space marketplace, municipal/public parking and UVAR platform with smart access.
+Transform the legacy PARK-IT parking prototype into a production-shaped complete Mobility-Space Management Platform spanning public/private parking, UVAR, curb, freight/special assets, permit orchestration, payments, access and fleet/operator integrations.
 
 Do not treat this brief as a one-slice coding request.
 
@@ -252,6 +252,10 @@ Physical hardware activation is an external/owner gate.
 - approved-route provenance
 - trip-day revalidation
 - service-provider attachments (escort/route survey/etc.)
+- TrustServiceAdapter for eID/signature/seal/timestamp/delivery
+- document-AI extraction with field-level provenance/verification
+- road toll/vignette/access-charge discovery + provider boundary
+- EETS/eFTI future-integration evaluation
 
 Acceptance:
 - cannot claim APPROVED without authoritative/operator evidence
@@ -262,6 +266,9 @@ Acceptance:
 - information-request/resubmission test
 - permit expiry/revocation tests
 - trip-day route-change test
+- signed-document hash/receipt test
+- extracted-field cannot become authoritative without verification test
+- existing EETS/fleet coverage prevents duplicate road-charge purchase test
 
 
 ### P13 — Evidence/disputes/trust
