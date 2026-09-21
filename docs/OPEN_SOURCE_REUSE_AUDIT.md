@@ -29,6 +29,48 @@ Recommendation:
 - use APDS concepts/contracts at provider boundaries
 - do not force the internal marketplace model to equal APDS exactly
 
+### DATEX II — public parking and UVAR interoperability
+Official model repository: `DATEX-II-EU/datexiimodel`
+Primary authority: DATEX II / CEN specifications and recommended profiles.
+
+Why useful:
+- European reference model for traffic/travel data
+- dedicated Parking and UVAR user domains
+- permanent access restrictions can represent vehicle class, dimensions, weight, propulsion/fuel and emission-class restrictions
+- suitable boundary for municipalities, navigation providers and national access points
+
+Recommendation:
+- implement DATEX II import/export as an adapter/profile, not the internal database schema
+- track the current published profiles/version during implementation
+- licensing/use terms for standards/model assets must be verified before copying generated/model artifacts
+
+### UVAR Box / EU UVAR data work
+Why useful:
+- reference for digitising low/zero emission zones, limited traffic zones, parking regulations and congestion/access schemes
+- reinforces the need for machine-readable zones, restrictions, exemptions and driver information
+
+Recommendation:
+- model PARK-IT Regulation/RegulationVersion so UVAR information can be imported/exported without losing provenance
+- support foreign/non-resident vehicle scenarios
+
+### ParkDots — competitive/product benchmark
+Not an open-source reuse candidate.
+
+Observed public capabilities include:
+- municipal parking payments
+- resident/visitor time credits/cards
+- enforcement handheld workflows
+- scan-car ANPR
+- fixed ANPR/virtual gates
+- occupancy sensors/camera monitoring
+- navigation to free spaces
+- municipal parking-space management and reporting
+
+Recommendation:
+- treat this as a minimum competitive benchmark for the CITY product
+- differentiate with unified private marketplace + garages/workshops + smart access + general UVAR/vehicle-policy engine + assisted zoning
+
+
 ### MapLibre GL JS
 Repository: `maplibre/maplibre-gl-js`
 
@@ -170,6 +212,10 @@ These are core differentiation and should remain first-class domain code:
 - reputation model
 - service/equipment add-ons
 - policy-aware ranking
+- municipal RegulationVersion model
+- UVAR/LEZ/ZTL policy evaluation
+- assisted zone builder + topology validation
+- public permit/session/enforcement normalization
 
 ## Provider interfaces to define early
 
@@ -177,6 +223,12 @@ These are core differentiation and should remain first-class domain code:
 - Geocoder
 - RoutingProvider
 - ParkingDataProvider
+- MunicipalGISProvider
+- PublicRegulationProvider
+- DATEXIIAdapter
+- PermitProvider
+- EnforcementProvider
+- OccupancySensorProvider
 - PaymentGateway
 - IdentityVerificationProvider
 - MessagingProvider
