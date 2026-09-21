@@ -87,6 +87,20 @@ Minimum entities:
 - TruckParkingCapacity
 - FacilityService
 - SecurityClassification
+- Asset
+- AssetEnvelope
+- AssetTransportConfiguration
+- OversizeMovementPlan
+- PermitReference
+- StagingFacility
+- MarineFacility
+- Berth
+- AircraftGroundSpace
+- MachineryStorageProfile
+- CurbSegmentPolicy
+- TemporaryRule
+- RoamingProviderMapping
+- FleetAccount
 
 Use immutable identifiers and explicit state transitions.
 
@@ -402,7 +416,80 @@ Freight ranking signals:
 - price
 
 
-## 7E. Enforcement
+## 7E. Special Asset / oversize compatibility
+
+Generalise the object being stored from Vehicle to Asset while keeping Vehicle as a specialised first-class profile.
+
+AssetEnvelope contains common dimensions/mass/security/environmental needs plus specialised extensions.
+
+Compatibility is two-dimensional:
+
+```text
+SPACE_COMPATIBLE
+ROUTE_OR_OPERATOR_AUTHORISED
+```
+
+Examples:
+- abnormal road transport requires staging-space compatibility plus permit/route status;
+- boat requires berth/dry-storage compatibility;
+- work machine may require low-loader access and ground-bearing capacity;
+- aircraft requires hangar/stand compatibility plus aerodrome/operator authority.
+
+Unknown critical compatibility data returns `REQUIRE_OPERATOR_APPROVAL` or `UNKNOWN`, not ALLOW.
+
+### Oversize movement
+
+OversizeMovementPlan may reference:
+- transport combination envelope
+- indivisible cargo envelope
+- authority permit
+- authorised corridor
+- validity window
+- escort state
+- staging points
+- source/provenance
+
+PARK-IT does not generate an authoritative abnormal-load permit unless directly integrated with the competent authority.
+
+### Marine
+
+Marine compatibility can include LOA, beam, draught, air draught, displacement, trailer, shore power, hoist/slipway and covered-storage requirements.
+
+### Aviation ground space
+
+AircraftGroundSpace can represent operator-authorised hangar, tie-down, GA stand, helicopter stand or maintenance bay.
+
+Compatibility may use wingspan, length, tail/rotor clearance, weight class, towing, security zone and ground-handling requirements. Aerodrome/operator authority is mandatory for controlled airside use.
+
+### Machinery
+
+Machinery storage can include hardstanding/ground-bearing capability, low-loader access, gate envelope, spill containment, security, charging/power and maintenance capabilities.
+
+## 7F. Dynamic curb / temporary rules
+
+CurbSegmentPolicy is effective-dated and can change use by schedule or event:
+- loading
+- parking
+- taxi/pickup
+- resident
+- disabled/accessibility
+- bus
+- micromobility
+- no stopping
+- temporary closure
+
+TemporaryRule must have source, authority, start/end, precedence and automatic expiry.
+
+Evaluate Open Mobility Foundation CDS as an interoperability boundary.
+
+## 7G. Roaming and fleet integration
+
+Roaming adapters map PARK-IT sessions/payments to external city/operator systems without assuming cross-authority permit equivalence.
+
+FleetAccount/API supports bulk vehicles/assets, time windows, permit references, access decisions, loading/curb rules, compatible staging/parking and reservations.
+
+
+## 7H. Enforcement
 
 Normalize enforcement observations from:
 - handheld app
@@ -424,7 +511,7 @@ Observation
 
 PARK-IT stores the evidence/audit trail and produces a violation candidate. Jurisdiction-specific legal penalty issuance remains outside the generic core unless explicitly integrated and authorised.
 
-## 7F. Standards
+## 7I. Standards
 
 Public interoperability boundaries should evaluate:
 - DATEX II Parking
