@@ -1,6 +1,6 @@
 # PARK-IT
 
-**PARK-IT is a mobility-space marketplace, public parking/UVAR platform and smart-access system for vehicles and special mobile assets.**
+**PARK-IT is a complete Mobility-Space Management Platform for people, fleets, cities, operators, vehicles and special mobile assets.**
 
 The original project started as a web parking assistant that finds nearby parking and navigates the driver to an available space. The target product is now broader: one platform for discovering, booking, paying for and accessing physical spaces around mobility **and** for cities/operators to define public parking zones, permits, tariffs and vehicle-access regulations.
 
@@ -11,6 +11,29 @@ The product goal is simple:
 > **Driver:** I have a vehicle and need a place or need to know whether I may enter a zone. PARK-IT finds a compliant option, explains the rule, handles parking/booking/payment and grants access when applicable.
 
 > **City/operator:** I need to define zones, tariffs, permits, restrictions, occupancy and enforcement. PARK-IT turns them into versioned machine-readable policy and one driver experience.
+
+## Complete Mobility-Space Management Platform
+
+PARK-IT joins the full lifecycle that is usually fragmented across maps, city parking apps, permit portals, fleet systems, access-control products and marketplace apps:
+
+```text
+INTENT
+ -> ASSET/VEHICLE PROFILE
+ -> LEGAL/PHYSICAL ELIGIBILITY
+ -> ROUTE
+ -> PERMITS/APPROVALS
+ -> SPACE DISCOVERY
+ -> BOOKING
+ -> PAYMENT
+ -> PHYSICAL ACCESS
+ -> OCCUPANCY/USE
+ -> ENFORCEMENT/EVIDENCE
+ -> SETTLEMENT
+ -> ANALYTICS
+```
+
+The canonical complete scope is documented in [docs/MOBILITY_SPACE_PLATFORM_SCOPE.md](docs/MOBILITY_SPACE_PLATFORM_SCOPE.md).
+
 
 ## Product modes
 
@@ -507,6 +530,35 @@ Examples:
 
 Freshness must be explicit. Stale telemetry may not be presented as live truth.
 
+## Permit Orchestrator
+
+PARK-IT should not stop at "special permit required".
+
+For regulated movements such as abnormal/oversize transport it should build a `PermitCase`:
+
+```text
+transport/load data
+-> candidate routes
+-> jurisdictions
+-> competent authorities
+-> required applications/documents
+-> consultations/engineering/escort requirements
+-> administrative fees
+-> submission/status tracking
+-> authority conditions
+-> approved route/corridor
+-> trip-day revalidation
+```
+
+Where an authority offers an API/portal integration, PARK-IT can submit and track electronically. Where no machine integration exists, it can generate the correct application package and guide/coordinate the manual submission.
+
+A normal navigation route is never treated as an approved abnormal-load route.
+
+Country-specific systems already demonstrate parts of this model; PARK-IT's differentiation is provider/jurisdiction orchestration above them.
+
+See [docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md](docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md).
+
+
 ## Dynamic curb, temporary rules, roaming and fleet API
 
 PARK-IT should also treat street/curb space as a time-dependent resource.
@@ -559,6 +611,39 @@ Ranking inputs may include:
 - cancellation rules
 
 AI may translate natural-language intent into filters, but deterministic policy/ranking rules must remain inspectable and testable.
+
+## Payments
+
+PARK-IT uses a provider-neutral Payment Orchestrator.
+
+Target payment methods, subject to country/PSP availability:
+- Visa / Mastercard / major cards
+- Apple Pay
+- Google Pay
+- PayPal
+- SEPA / bank transfer / open-banking options
+- local payment methods
+- B2B monthly invoicing
+- municipal credits
+- fleet payment integrations
+
+Payment flows include:
+- public parking sessions
+- booking preauthorisation/capture
+- marketplace split payments
+- host/operator payouts
+- deposits/holds
+- refunds/partial refunds
+- EV charging
+- permit/authority fees
+- service-provider fees
+- subscriptions/recurring billing
+- reconciliation
+
+Government/authority fees, operator/host revenue and PARK-IT commission must stay separately identifiable.
+
+PARK-IT should use licensed PSP marketplace/platform capabilities for KYC/payouts and avoid custodying client funds itself where possible.
+
 
 ## Payments and payouts
 
@@ -778,6 +863,8 @@ The current execution program is defined in:
 - [docs/PARK_IT_PRODUCT_ARCHITECTURE.md](docs/PARK_IT_PRODUCT_ARCHITECTURE.md)
 - [docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md](docs/MUNICIPAL_PUBLIC_PARKING_UVAR.md)
 - [docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md](docs/SPECIAL_ASSET_OVERSIZE_AND_CURB.md)
+- [docs/MOBILITY_SPACE_PLATFORM_SCOPE.md](docs/MOBILITY_SPACE_PLATFORM_SCOPE.md)
+- [docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md](docs/PERMIT_ORCHESTRATION_AND_PAYMENTS.md)
 - [docs/OPEN_SOURCE_REUSE_AUDIT.md](docs/OPEN_SOURCE_REUSE_AUDIT.md)
 - [docs/DEVIN_EXECUTION_BRIEF.md](docs/DEVIN_EXECUTION_BRIEF.md)
 
