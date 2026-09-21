@@ -112,6 +112,143 @@ A permit may be bound to:
 
 Permit eligibility and issuance must be configurable per authority and fully auditable.
 
+## 3A. Entitlement and tariff-benefit engine
+
+Do not encode special treatment as fixed application logic such as `if EV then free`.
+
+Model a general **EntitlementPolicy** that can match:
+- person/account attributes
+- verified entitlement
+- permit class
+- organisation/fleet
+- vehicle attributes
+- zone/space
+- day/time/effective period
+- usage quota/credits
+
+Vehicle classes can include:
+- BEV
+- PHEV
+- HEV
+- ICE by fuel type
+- Euro emission class
+- zero/low-emission class defined by the authority
+
+Person/permit classes can include:
+- person with disability / ŤZP entitlement
+- resident
+- visitor
+- business
+- delivery/supply
+- taxi
+- emergency/public service
+- municipal service
+- maintenance/contractor
+- hotel guest
+- healthcare/home-care
+- school/service
+- temporary/event permit
+
+Benefits/actions can include:
+- `FREE`
+- `PERCENT_DISCOUNT`
+- `FIXED_DISCOUNT`
+- `OVERRIDE_RATE`
+- `FREE_INITIAL_DURATION`
+- `DAILY_CAP_OVERRIDE`
+- `MAX_STAY_OVERRIDE`
+- `ALLOW_RESERVED_SPACE_CLASS`
+- `ALLOW_ZONE_ENTRY`
+- `REQUIRE_TIME_WINDOW`
+- `GRANT_CREDITS`
+- `EXEMPT_FEE`
+- `EXEMPT_RESTRICTION`
+
+Example policies:
+
+```text
+Zone A
+Base tariff: 2.00 EUR/h
+
+BEV:
+  50% discount
+  valid Mon-Sun 00:00-24:00
+
+PHEV:
+  25% discount
+  valid until 2028-12-31
+
+DISABILITY / ŤZP permit:
+  parking fee exempt
+  eligible for designated accessible spaces
+  permit verification required
+
+SUPPLY / DELIVERY permit:
+  zone entry allowed 06:00-10:00
+  parking/loading max 60 min
+  no general resident discount
+
+MUNICIPAL SERVICE:
+  fee exempt
+  access allowed in service zones while permit is active
+```
+
+Policy composition must define deterministic precedence when multiple entitlements match.
+
+Recommended evaluation order:
+1. legal/prohibitive safety rule
+2. mandatory public access restriction
+3. explicit exemption/permit
+4. eligibility for reserved-space class
+5. tariff benefit/discount
+6. usage quota/credit
+7. base tariff
+
+The engine must return:
+- matched entitlement IDs
+- benefit/rule IDs
+- exact RegulationVersion/TariffVersion
+- pre-discount price
+- discount/exemption amount
+- final price
+- reason codes
+- verification source/state
+
+No benefit should be inferred from an unverified attribute when the authority requires official verification.
+
+## 3B. Accessible parking / ŤZP
+
+Accessible parking must be representable independently from generic discounts.
+
+A space/zone can declare:
+- accessible-space designation
+- required permit/credential class
+- time limits
+- companion/assistance rules if applicable
+- fee treatment
+- reservation eligibility
+- enforcement requirements
+
+The platform must not assume that every disability permit has identical rights across jurisdictions. Rights are authority-defined, versioned and effective-dated.
+
+## 3C. Supply / delivery and special operational permits
+
+Special permits should support:
+- allowed entry gates/zones
+- permitted streets/curb segments
+- loading-only spaces
+- day/time windows
+- maximum dwell time
+- recurring schedules
+- number of entries
+- vehicle/fleet binding
+- company/contract binding
+- temporary permit validity
+- emergency override where legally configured
+
+This allows PARK-IT to model delivery windows, construction access, maintenance vehicles, events, hotel guests and similar operational cases without custom code per city.
+
+
 ## 4. ZTL / LEZ / ZEZ / UVAR policy engine
 
 PARK-IT should have a general Urban Vehicle Access Regulation engine rather than one hard-coded "low-emission zone" feature.
