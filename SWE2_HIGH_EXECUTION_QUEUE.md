@@ -90,6 +90,10 @@ TARGET PRODUCT: mobility-space marketplace + municipal/public parking + UVAR/ZTL
    - Approved-route provenance.
    - Permit conditions.
    - Trip-day revalidation.
+   - eID/e-signature/e-seal/e-delivery adapter boundary.
+   - Document-AI extraction with provenance.
+   - Toll/vignette/access-charge discovery and EETS-aware provider boundary.
+   - eFTI future interoperability evaluation.
    - Fail closed on missing authoritative approval.
 
 8. **PARK-SWE2-008 — Booking + Settlement**
