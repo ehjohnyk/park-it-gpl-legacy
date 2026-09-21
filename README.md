@@ -530,6 +530,30 @@ Examples:
 
 Freshness must be explicit. Stale telemetry may not be presented as live truth.
 
+## Digital identity, documents and e-government
+
+Permit and authority workflows should support:
+- eID/e-government identity adapters
+- electronic signature / qualified electronic signature where required
+- electronic seals for organisations
+- trusted timestamp
+- registered electronic delivery
+- authority document inbox/outbox
+- multilingual forms/documents
+
+Document AI can assist by extracting structured data from:
+- vehicle registration/technical documents
+- axle-load tables
+- cargo drawings
+- insurance certificates
+- ADR documents
+- route surveys
+- permits
+- invoices/receipts
+
+Extracted values are marked with provenance/confidence and require verification before they become authoritative inputs. Missing values are never invented.
+
+
 ## Permit Orchestrator
 
 PARK-IT should not stop at "special permit required".
@@ -611,6 +635,28 @@ Ranking inputs may include:
 - cancellation rules
 
 AI may translate natural-language intent into filters, but deterministic policy/ranking rules must remain inspectable and testable.
+
+## Toll, vignette and road-charge orchestration
+
+Route cost/compliance should also include:
+- motorway/vignette products
+- truck tolls
+- congestion/access charges
+- tunnel/bridge/ferry charges where integrated
+- EETS-compatible road charging interfaces where applicable
+- authority/permit fees
+
+PARK-IT should show which costs are mandatory, which are optional services and which are already covered by a fleet/EETS account.
+
+The route engine should be able to optimise for:
+- fastest
+- cheapest legal
+- lowest toll
+- lowest emission/access cost
+- permit-compatible
+- HGV/oversize-compatible
+- preferred operator/fleet policy
+
 
 ## Payments
 
