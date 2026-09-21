@@ -80,6 +80,10 @@ Acceptance:
 - authoritative/draft separation
 - tariff plans
 - permit types and digital permits
+- generic EntitlementPolicy/TariffBenefit engine
+- BEV/PHEV/vehicle-class discounts
+- disability/ŤZP accessible-space and tariff entitlement model
+- supply/delivery/taxi/service/temporary permit classes
 - resident/visitor/time-credit model
 - public parking sessions
 - vehicle policy profile
@@ -96,6 +100,10 @@ Acceptance:
 - effective-dated/versioned policy tests
 - overlapping-zone priority tests
 - vehicle eligibility matrix tests
+- tariff matrix tests across BEV/PHEV/ICE + permit classes
+- multiple-entitlement precedence/conflict tests
+- accessible-space eligibility separate from pricing tests
+- special-permit time-window/zone/fleet tests
 - no draft regulation can affect driver/enforcement decisions
 - authoritative publish is audited
 - provider/map-derived data licensing documented
@@ -225,7 +233,7 @@ Municipal driver E2E:
 4. show allow/deny/fee/permit reason
 5. when denied, reroute to a compliant boundary/P+R parking option
 6. when allowed, start a public parking session
-7. apply permit/credit/discount
+7. apply permit/credit/discount (including BEV/PHEV/accessible/special-permit fixture cases)
 8. pay in sandbox
 9. simulated enforcement observation verifies session/permit
 10. session expires/closes with audit evidence
