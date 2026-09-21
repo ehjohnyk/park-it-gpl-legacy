@@ -4,6 +4,9 @@ Tracks genuine external/owner/legal/credential blockers. A blocker stops only de
 
 ## Current blockers
 
+### CI_VPS_RUNNER_REGISTRATION — OWNER/INFRA
+Repository-side `/server-ci <sha>` workflow is active on `master`, but validation run 35567913127 queued at the first `[self-hosted, ci-vps]` job. PARK-IT requires an eligible online repository runner on the VPS (or equivalent approved runner scope). Follow `docs/SERVER_CI_RUNNER_BOOTSTRAP.md`. This blocks canonical CI closure but not independent P0 audit/remediation.
+
 ### COMMERCIAL_LICENSE_PATH — OWNER/LEGAL
 The repository is GPL-3.0-derived. Before claiming a proprietary/commercially license-clean V2, decide and review:
 - GPL-compatible distribution path; or
